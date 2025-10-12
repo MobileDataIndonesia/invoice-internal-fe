@@ -1,5 +1,5 @@
 // src/api/paymentService.js
-import { apiClient } from "./api"; 
+import { apiClient } from "./api";
 
 export const getAllPaymentsApi = async () => {
   try {
@@ -56,16 +56,23 @@ export const toggleVoidPaymentApi = async (id) => {
 
 export const getProofOfTransferApi = async (filePath) => {
   try {
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'];
+    const allowedTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/jpg",
+      "application/pdf",
+    ];
     const response = await apiClient.get(`/payments/${filePath}`, {
       responseType: "blob",
     });
-    const contentType = response.headers['content-type'] || '';
+    const contentType = response.headers["content-type"] || "";
     if (!allowedTypes.includes(contentType)) {
-      alert('File type is not allowed.');
+      alert("File type is not allowed.");
       return null;
     }
-    const fileUrl = URL.createObjectURL(new Blob([response.data], { type: contentType }));
+    const fileUrl = URL.createObjectURL(
+      new Blob([response.data], { type: contentType })
+    );
     const newWindow = window.open(fileUrl, "_blank", "noopener,noreferrer");
     if (newWindow) URL.revokeObjectURL(fileUrl);
     return fileUrl;
