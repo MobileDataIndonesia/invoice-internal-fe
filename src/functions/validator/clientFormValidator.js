@@ -95,9 +95,34 @@ function validateClientPhone(phone) {
   return true;
 }
 
+function validateClientEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(email)) {
+    return "Please enter a valid email address";
+  }
+
+  return true;
+}
+
+function validateClientPassword(password) {
+  if (password.length < 6) {
+    return "Password must be at least 6 characters long";
+  }
+
+  return true;
+}
+
 export function clientFormValidator(formData) {
-  const { client_name, client_address, postal_code, country, client_phone } =
-    formData;
+  const {
+    client_name,
+    client_address,
+    postal_code,
+    country,
+    client_phone,
+    client_email,
+    client_password,
+  } = formData;
 
   if (validateClientName(client_name) !== true)
     return validateClientName(client_name);
@@ -109,5 +134,9 @@ export function clientFormValidator(formData) {
     return validateClientPostCode(postal_code);
   if (validateClientPhone(client_phone) !== true)
     return validateClientPhone(client_phone);
+  if (validateClientEmail(client_email) !== true)
+    return validateClientEmail(client_email);
+  if (validateClientPassword(client_password) !== true)
+    return validateClientPassword(client_password);
   return true;
 }
