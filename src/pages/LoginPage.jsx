@@ -11,8 +11,6 @@ function LoginPage() {
   const { login, status } = useAuth();
 
   useEffect(() => {
-    console.log("masuk effect login");
-    console.log("status", status);
     if (status === "authenticated") {
       navigate("/invoices");
     }
@@ -22,7 +20,7 @@ function LoginPage() {
     e.preventDefault();
 
     try {
-      console.log("mencoba masuk", username, " ", password);
+      // console.log("mencoba masuk", username, " ", password);
       await login(username, password);
     } catch (error) {
       alert("username or password is incorrect!");

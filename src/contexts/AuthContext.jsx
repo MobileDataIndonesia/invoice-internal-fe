@@ -19,7 +19,7 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   // Fungsi login
   const login = async (username, password) => {
-    console.log("masuk auth provider", username, " ", password);
+    // console.log("masuk auth provider", username, " ", password);
     try {
       await axios.post(
         `${API_BASE_URL}/login`,
@@ -33,7 +33,7 @@ const AuthProvider = ({ children }) => {
       const res = await axios.get(`${API_BASE_URL}/profile`, {
         withCredentials: true,
       });
-      console.log(res.data);
+      // console.log(res.data);
 
       setUser(res.data.data);
       setStatus("authenticated");
@@ -73,7 +73,7 @@ const AuthProvider = ({ children }) => {
         setUser(res.data.data);
 
         setStatus("authenticated");
-        console.log("status context", status);
+        // console.log("status context", status);
       } catch (err) {
         if (err.response?.status === 401) {
           try {

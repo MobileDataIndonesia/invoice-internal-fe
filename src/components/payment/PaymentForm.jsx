@@ -22,7 +22,7 @@ export default function PaymentForm({ setOpenCreatePayment, setIsEditOpen, type 
 
   // Redux Selector
   const allInvoices = useSelector(state => state.invoices.allInvoices);
-  console.log(allInvoices);
+  // console.log(allInvoices);
   const payment = type === "edit" ? useSelector(state => state.payments.paymentById) : {};
   const invoice = payment?.invoice || {};
   const client = invoice?.client || {};

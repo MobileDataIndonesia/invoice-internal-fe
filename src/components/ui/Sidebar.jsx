@@ -29,7 +29,7 @@ export default function Sidebar({ selectedMenu, onMenuSelect }) {
           <li
             key={menu.key}
             onClick={() => {
-              console.log("Navigating to:", menu.path);
+              // console.log("Navigating to:", menu.path);
               onMenuSelect(menu.key);
               navigate(menu.path);
             }}
