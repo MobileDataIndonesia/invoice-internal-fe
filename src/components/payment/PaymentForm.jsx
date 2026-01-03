@@ -47,7 +47,8 @@ export default function PaymentForm({ setOpenCreatePayment, setIsEditOpen, type 
     paymentDate:  type === "edit" ? moment(payment?.payment_date).format('YYYY-MM-DD') : '',
     amountPaid: type === "edit" ? payment?.amount_paid : '',
     invoiceNumber: type === "edit" ? payment?.invoice_number : '',
-    proofFile: type === "edit" ? payment?.proof_of_transfer.split('\\').pop() : null,
+    // proofFile: type === "edit" ? payment?.proof_of_transfer.split('\\').pop() : null,
+    proofFile: type === "edit" ? payment?.proof_of_transfer : null,
     currency: type === "edit" ? client?.currency : 'USD',
     clientName: type === "edit" ? client?.client_name : ''
   });
@@ -274,7 +275,9 @@ export default function PaymentForm({ setOpenCreatePayment, setIsEditOpen, type 
             />
             {formData.proofFile ? (
               <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                Selected file: {type === "edit" ? formData.proofFile : formData.proofFile.name}
+                Selected file: {type === "edit" && typeof formData.proofFile === "string" 
+                  ? <img src={formData.proofFile} alt="Proof of Transfer" className="max-w-xs max-h-" />
+                  : formData.proofFile?.name}
               </p>
             ) : (
               <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">

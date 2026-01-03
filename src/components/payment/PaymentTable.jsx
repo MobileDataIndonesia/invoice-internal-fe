@@ -10,7 +10,7 @@ import SortableHeader from "@/components/ui/table/SortableHeader.jsx";
 import PaidStatus from "@/components/ui/PaidStatus.jsx";
 
 import { toggleVoidPayment, fetchPaymentById } from "@/redux/paymentSlice.js";
-import { getProofOfTransferApi } from "@/api/paymentApi.js";
+//import { getProofOfTransferApi } from "@/api/paymentApi.js";
 import { formatCurrency } from "@/functions/formatCurrency.js";
 import useAuth from "@/hooks/useAuth.js";
 
@@ -67,10 +67,7 @@ export default function PaymentTable({setIsEditOpen, from}) {
 
 	// Go to see file proof of transfer
 	const onLinkClick = (proofOfTransfer) => {
-		const fileUrl = proofOfTransfer
-		const uploadPathStartIndex = fileUrl.indexOf("upload");
-		const relativeFilePath = fileUrl.substring(uploadPathStartIndex);
-		getProofOfTransferApi(relativeFilePath);
+		window.open(proofOfTransfer, "_blank");
 	};
 
 	// Fungsi untuk handle aksi Void/Unvoid
